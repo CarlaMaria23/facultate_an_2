@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1573047289 source:c:\users\carla1999\desktop\facultate an 2\geometrie computationala\acopeririconvexe\main.cpp
+	<iostream>
+	<cmath>
+	<bits/stdc++.h>
+
