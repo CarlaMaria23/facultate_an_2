@@ -1,3 +1,3 @@
-#Geometrie computationala
-##Acoperiri convexe
-##Puncte de intersectie
+# Geometrie computationala
+## Acoperiri convexe
+## Puncte de intersectie
