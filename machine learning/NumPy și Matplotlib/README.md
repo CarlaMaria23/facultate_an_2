@@ -1,5 +1,5 @@
 1. Se dau 9 imagini de dimensiuni 400x600. Valorile acestora au fost
-   salvate în fișierele “images/car_{idx}.npy”.
+   salvate ca “car_{idx}.npy”.
  
    a. Citiți imaginile din aceste fișiere și salvați-le într-un np.array (va avea
       dimensiunea 9x400x600).
