@@ -21,17 +21,12 @@ public class Concert extends Spectacol {
     }
 
     @Override
-    public Boolean[][] vizualizare() {
+    public double vizualizare() {
         int sum = 0;
         for (Persoana p : planification) {
             sum = sum + p.getNumarBilete();
         }
-        int procent = (sum * capacitate) / 100;
-        Boolean[][] sala = new Boolean[10][10];
-        for (int i = 0; procent > i; i++) {
-            sala[i / 100][i % 100] = true;
-        }
-        return sala;
+        return (sum * 100.0) / capacitate;
     }
 
     @Override

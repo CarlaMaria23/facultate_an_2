@@ -1,15 +1,57 @@
 package Meniu;
-
+import Persoana.Persoana;
 import Spectacol.*;
+import Service.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Meniu {
     int Operation;
     List<Spectacol> listaSpectacole = new ArrayList<Spectacol>();
-
+    public void operatiiRegistrii1(){
+        Scanner in = new Scanner(System.in);
+        Service service = new Service();
+        service.initReportHeader();
+        double procent;
+        String name;
+        Boolean sort;
+        System.out.println("Registru sortat: (True/False)");
+        sort = in.nextBoolean();
+        if (sort) {
+            System.out.println("Crescator:(True/False) ");
+            sort = in.nextBoolean();
+            if(sort)
+                Collections.sort(listaSpectacole, Comparator.comparing(Spectacol::getNumeEv));
+            else
+                Collections.sort(listaSpectacole, Comparator.comparing(Spectacol::getNumeEv).reversed());
+            for (Spectacol search : listaSpectacole) {
+                procent = search.vizualizare();
+                name = search.getNumeEv();
+                service.writeDataToReport(name, procent);
+            }
+        }
+        else{
+            for (Spectacol search : listaSpectacole) {
+                procent = search.vizualizare();
+                name = search.getNumeEv();
+                service.writeDataToReport(name, procent);
+            }
+        }
+    }
+    public void operatiiRegistrii2(){
+        Service service = new Service();
+        service.initReportHeader_();
+        String namePers, nameEv;
+        Double price;
+        for (Spectacol search : listaSpectacole) {
+            nameEv = search.getNumeEv();
+            for ( Persoana p : search.planification) {
+                namePers = p.getName();
+                price = search.totalPlata(namePers);
+                service.writeDataToReport_(namePers, nameEv, price);
+            }
+        }
+    }
     public void introduceOperatie() {
         System.out.println("Alege un numar:");
         System.out.println("    1.Adauga spectacol.");
@@ -17,8 +59,11 @@ public class Meniu {
         System.out.println("    3.Vizualizare capacitate.");
         System.out.println("    4.Rezervare loc la spectacol.");
         System.out.println("    5.Anuleaza rezervare loc la spectacol.");
-        System.out.println("    6.Total plata.");
-        System.out.println("    7.Exit.");
+        System.out.println("    5.Vizualizare plata pentru o persoana.");
+        System.out.println("    7.Raport Spectacole.");
+        System.out.println("    8.Raport Persoane.");
+        System.out.println("    9.Exit.");
+
         Scanner in = new Scanner(System.in);
         Operation = in.nextInt();
         if (Operation == 1)
@@ -34,6 +79,10 @@ public class Meniu {
         if (Operation == 6)
             totalPlataGetData();
         if (Operation == 7)
+            operatiiRegistrii1();
+        if (Operation == 8)
+            operatiiRegistrii2();
+        if (Operation == 9)
             System.exit(0);
         introduceOperatie();
     }
@@ -155,7 +204,7 @@ public class Meniu {
     public void vizualizare(String show) {
         for (Spectacol search : listaSpectacole)
             if (search.getNumeEv().equals(show)) {
-                search.vizualizare();
+                System.out.println(search.vizualizare());
             }
     }
 

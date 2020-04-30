@@ -26,12 +26,17 @@ public class Proiectie extends Spectacol {
     }
 
     @Override
-    public Boolean[][] vizualizare() {
-        Boolean[][] sala = new Boolean[nrRow][nrColl];
+    public double vizualizare() {
+        Boolean[][] sala = new Boolean[nrRow + 1][nrColl +1];
         for (Persoana p : planification){
             sala = p.locuriOcupate(sala);
         }
-        return sala;
+        int procent = 0;
+        for (int i = 1; i <= nrRow; i++)
+            for (int j = 1; j <= nrColl; j++)
+                if(sala[i][j] != null )
+                    procent ++;
+        return (procent * 100.0) / (nrColl*nrColl);
     }
 
     @Override

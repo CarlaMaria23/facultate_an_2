@@ -10,7 +10,7 @@ public class Spectacol {
     Double pretDePlecare;
     String Data;
     String Ora;
-    List<Persoana> planification = new CopyOnWriteArrayList<>();
+    public List<Persoana> planification = new CopyOnWriteArrayList<>();
 
     public Spectacol(String nume, Double pret, String data, String ora) {
         NumeEv = nume;
@@ -53,8 +53,8 @@ public class Spectacol {
         return null;
     }
 
-    public Boolean[][] vizualizare(){
-        return null;
+    public double vizualizare(){
+        return 0.00;
     }
 
     public Double totalPlata(String nume){
